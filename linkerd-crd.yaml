@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: c2ck4-linkerd-bundle-user-values
+  namespace: c2ck4
+data:
+  values: |
+    clusterID: c2ck4
+    organization: org-melisa
+    apps:
+      linkerd-control-plane:
+        userConfig:
+          secret:
+            values: |
+              identity:
+                issuer:
+                  scheme: kubernetes.io/tls
+              identityTrustAnchorsPEM: |
+                -----BEGIN CERTIFICATE-----
+                MIIBiTCCATCgAwIBAgIQUc81/m5pSirZg/WaOTJMMDAKBggqhkjOPQQDAjAlMSMw
+                IQYDVQQDExpyb290LmxpbmtlcmQuY2x1c3Rlci5sb2NhbDAeFw0yMzA4MjIxMDQ2
+                MjhaFw0yMzExMjAxMDQ2MjhaMCUxIzAhBgNVBAMTGnJvb3QubGlua2VyZC5jbHVz
+                dGVyLmxvY2FsMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAERVkScRg5EAD6bV5Q
+                Sc/bajxRyas/5AmA4YrAQXDpYhNH3fRRJUu5POB3Mdtko2NEJipIcidvuvhMi9uw
+                PX74C6NCMEAwDgYDVR0PAQH/BAQDAgKkMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0O
+                BBYEFHit0PTQF0vIzG++LAGWgM+sL3e/MAoGCCqGSM49BAMCA0cAMEQCIFoj5N9R
+                /ycheyYvWh1cCSv0kfH2BEf2iOmaaVlhDDyPAiAlvAgNlNro5UBslgbER2iCl/Fy
+                S1KetOZ2oqHb4ZqPSg==
+                -----END CERTIFICATE-----
+---
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  name: c2ck4-linkerd-bundle
+  namespace: c2ck4
+  labels:
+    app.kubernetes.io/name: linkerd-bundle
+    giantswarm.io/cluster: c2ck4
+    app-operator.giantswarm.io/version: 0.0.0
+spec:
+  catalog: giantswarm
+  name: linkerd-bundle
+  version: 0.3.1
+  userConfig:
+    configMap:
+      name: c2ck4-linkerd-bundle-user-values
+      namespace: c2ck4
+  kubeConfig:
+    inCluster: true
+  namespace: c2ck4
