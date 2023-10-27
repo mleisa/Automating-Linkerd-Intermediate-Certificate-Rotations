@@ -30,7 +30,8 @@ The source code concerning the creation of the **Issuer CA** can be found in [id
 The source code concerning the installation of **Linkerd** can be found in [app-manifest.yaml](app-manifest.yaml).
 
 ## Further Reading
-- [cert-manager Issuers](https://cert-manager.io/docs/concepts/issuer/)
-- [cert-manager Certificate Resources](https://cert-manager.io/docs/usage/certificate/)
-- [What is Linkerd?](https://linkerd.io/what-is-a-service-mesh/)
+- [Cert-manager Issuers](https://cert-manager.io/docs/concepts/issuer/)
+- [Cert-manager Certificate Resources](https://cert-manager.io/docs/usage/certificate/)
+- [Giant Swarm App CRs](https://docs.giantswarm.io/getting-started/app-platform/app-configuration/) (relevant to [app-manifest.yaml](app-manifest.yaml))
+- [Linkerd](https://linkerd.io/what-is-a-service-mesh/)
 - [Linkerd Architecture](https://linkerd.io/2.14/reference/architecture/)
